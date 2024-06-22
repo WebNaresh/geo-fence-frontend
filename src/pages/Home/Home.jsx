@@ -1,16 +1,21 @@
-import React, { useEffect } from "react";
-import useAppFunction from "../../hooks/useAppFunction";
-import Component1 from "./components/component1";
+import { Button, TextField } from "@mui/material";
+import React from "react";
+import useHomeQuery from "./useHomeQuery";
 
 const Home = () => {
-  const { handleAlert } = useAppFunction();
-  useEffect(() => {
-    handleAlert(true, "success", "hel ");
-  }, []);
-
+  const { mutate, name, setName } = useHomeQuery();
   return (
-    <div style={{ height: "1222vh" }}>
-      <Component1 />
+    <div>
+      <div className="m-20"></div>
+      <TextField
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => setName(e.target.value)}
+        value={name}
+      />
+      <Button variant="contained" onClick={() => mutate({ name })}>
+        Add Name
+      </Button>
     </div>
   );
 };
