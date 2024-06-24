@@ -4,18 +4,33 @@ import useHomeQuery from "./useHomeQuery";
 
 const Home = () => {
   const { mutate, name, setName } = useHomeQuery();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    mutate({ name });
+  };
   return (
     <div>
-      <div className="m-20"></div>
-      <TextField
-        type="text"
-        placeholder="Search..."
-        onChange={(e) => setName(e.target.value)}
-        value={name}
-      />
-      <Button variant="contained" onClick={() => mutate({ name })}>
-        Add Name
-      </Button>
+      <form
+        onSubmit={onSubmit}
+        className="m-20 flex flex-col gap-4 border-2 p-8 shadow-lg"
+      >
+        <TextField
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => setName(e.target.value)}
+          name="place"
+          value={name}
+          size="small"
+        />
+        <Button
+          size="medium"
+          variant="contained"
+          onClick={() => mutate({ name })}
+          disabled={name?.length < 2}
+        >
+          Add Name
+        </Button>
+      </form>
     </div>
   );
 };
