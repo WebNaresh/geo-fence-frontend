@@ -8,9 +8,6 @@ import {
 import React from "react";
 
 const GeoMaps = ({ apiKey, center, path, polygonComplete }) => {
-  const polygonRef = React.useRef(null);
-  const listenerRef = React.useRef(null);
-
   return (
     <div>
       GeoMaps
